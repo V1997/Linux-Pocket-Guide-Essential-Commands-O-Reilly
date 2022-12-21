@@ -75,7 +75,7 @@ done
 
 for name in Tom Jane Harry
 do
- echo "$name is my friend"
+  echo "$name is my friend"
 done
 
 → ./script-for
@@ -83,10 +83,28 @@ Tom is my friend
 Jane is my friend
 Harry is my friend
 ```
+### Varibles
+→ MYVAR=6 \
+→ echo $MYVAR
+6 \
+
+For more: https://www.networkworld.com/article/3387154/working-with-variables-on-linux.html
+
+### Whitespace and Linebreaks
+Bash shell scripts are very sensitive to whitespace and line‐
+breaks. Because the “keywords” of this programming language
+are actually commands evaluated by the shell, you need to sep‐arate arguments with whitespace. \
+
+For example:
+```
+→ grep abcdefghijklmnopqrstuvwxyz file1 file2 \
+ file3 file4
+```
+
+-------------------------
+
 To watch the processes running on the computer.
 -> top -d1
-
-
 
 Print names and addresses of computers, on your default printer if you have one setup:
 /etc/hosts/
