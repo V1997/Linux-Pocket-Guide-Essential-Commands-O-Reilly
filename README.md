@@ -230,157 +230,94 @@ The stat command lists important attributes of files (by default) or filesystems
 
 -> stat -f myfile
 
+### du - disk usage
+
+measures the disk space occupied by files or directories. By default, it measures the current directory and all its subdirectories, printing totals in blocks for each, with a grand total at the bottom:
+
+->du
+
+-> du myfile emptyfile hugefile
+
+### file
+
+The file command reports the type of a file.
+
+### Chattr and lsattr
+[More](
+https://www.linuxtechi.com/file-directory-attributes-in-linux-using-chattr-lsattr-command/)
+
+-> find . -type f -name myfile\* -print
+
+Print all dir names:
+
+->find . -type d -print
+
+For example, to search your current dir hierarchy for files containing the word "tomato":
+
+-> find . -type f -print | xargs grep -l tomato
+
+-> find . -type f -print0 | xargs -0 grep -l tomato
+
+Match lines ending in an exclamation point:
+
+-> grep '\!$' randomlines
+
+### fgrep
+
+Google it.
+
+  -> cut -f3 -d, data.csv
+
+### uniq
+
+-> sort letters2 | uniq
+
+Count adjacent duplicate lines.
+
+-> sort letters2 | uniq -c
+
+output: \
+1 a \
+3 b \
+1 c 
+
+### AWK
+
+Print the second and fourth word on each line:
 
 
--------------------------
-
-To watch the processes running on the computer.
--> top -d1
-
-Print names and addresses of computers, on your default printer if you have one setup:
-/etc/hosts/
--> lpr /etc/hosts
-
-To check how long have you been logged in:
--> last -1 $USER
-Universal Example: last -num $USER or last -num $user
-
-To manifest information about your computer's IP address:
--> ip addr show eth0
-
-To check who owns domain or website:
--> whois website.com | less
-
-Finally, to clear the window:
--> clear
-
-ls full form - list
-
-ls [options] [files]
-
-If you see a vertical bar between options or arguments, perhaps grouped by parentheses:
-
-ls (file | directory)
-
-this indicates choice: you may supply either a filename or directory name as an argument.
-
-ls stdin stdout -file --opt --help --version
-
-stdin (standard input) – your keyboard input
-stdout (standard output) – your screen which displays output.
-
-To give name and utilize dash[filename] or -vasu.txt then use ./ to create, edit and watever operations to perform.
-
--> touch ./-vasu
--> wc ./-vasu
-output: 0 0 0 ./-vasu
-
---help
---version
-
-echo command:
-
--> echo This is a long command that doesn’t fit on \
-one line [Enter]
-output: This is a long command that doesn’t fit on one line
-
-Manual pages called manpages a command derived man from it.
-
--> man wc (means manual for wc command)
-To search in manual for a command:
--> man -k database | less (here -k is option followed by the keyword, less is for printing the results one screenful at a time.)
-
-info command:
--> info ls
-
-For shorthelp:
-
--> wc --help
-
-If the output is longer than the screen, pipe it into the less program to display it in pages. (press q to quite)”
--> ls –help | less
-
-The kernel
-The low-level OS handling files, disks, net-working, and other necessities we take for granted. Most users rarely notice the kernel.
-
-To see the ownership and permissions of a directory:
--> ls -ld mydir
-
-File permissions
-chown (change owner), chgrp(change group), chmod(change mode)
-- = file
-d = directory
-
-Permission understanding:
-[-] [rwx] [r-x] [---]
-
-[-] --- represent file or folder
-[rwx] --- Represents owner’s rights -> chown (change owner)
-[r-x] --- Represents group’s rights -> chgrp(change group)
-[---] --- Represents otherusers rights. -> chgrp(change group)
-
-to check Who is logged into the system:
--> who
-. (period) – files with . Name included are hidden files. To list such files, -a being used. It means ALL.
-Below command is for listing down all the environment variables.
--> Printenv
-To add extra in existing path variable:
-PATH=$PATH:/TEST/TEST/TEST
-We will be having .profile file instead of .bash_profile in ubuntu
-as a start up file.
-List commands:
--> ls -alf
--> ls -l
--> ls -a
--> type ll
-output: ll is aliased to `ls -alF'
--> alias ll
-Output: alias ll='ls -alF'
-who | sort (Input send to sort program and list alphabetically)
-who | sort | awk ‘{print $1}’ | less
+-> awk '{print $2, $4}' myfile
 
 
-Compare files with its corresponding to a txt file.
--> ls *.jpg | cut -d. -f1 > /tmp/tes1
--> ls *.jpg | cut -d. -f1 > /tmp/test2
-diff /tmp/test1 /tmp/test2
-You can perform via single command as well.
--> diff <(ls *.jpg|cut -d. -f1) < (ls *.txt | cut -d. -f1)
-Combining Commands:
-command1 ; command2 ; command 3
-To run a seq of commands as before but stop execution if any of them fails, seperate them with && (“and”) symbols:
--> command1 && command2 && command3
+Print all lines that are shorter than 60 characters:
+
+-> awk 'length < 60 {print}' myfile
 
 
-To run a sequence of commands, stopping execution as soon as one succeeds, seperate them with || (“or”) Symbols:
--> command1 || command2 || command3
-Single or double quotes to make the shell treat it as a unit. Single quotes treat their contents literally, while double quotes let shell constructs be evaluated, such as
--> echo ‘test $HOME’
-test $HOME
--> echo “test $HOME”
-test /home/vasu
--> date +%Y (Print current year)
--> echo Next year is $(expr $(date +%Y) + 1)
-Next year is 2017
--> echo a*
--> echo a\*
--> history
-To run previous command: !!
-Want to return to original shell:
--> sudo bash
-copy multiple files into a sigle directory:
--> cp myfile myfile1 myfile2 mydir
-Using the -a or -r option, you can also recursively copy directories.
-Mv file1 dir1 destination_dir
-Likewise, lots of files and folders can be moved to destination_dir.
-rm -r dir1 dir2
-Stat - display attributes of file and directories.
+### sed
+sed 's/me/YOU/g' myfile
 
-Du - measure disk usage of files and directories.
-File - Identify the type of a file.
-umask - (UNIX shorthand for "user file-creation mode mask)
+### rsync
+
+-> rsync 0a mydir vasu@server.example.com:D2
+
+### dd
+
+google it.
+
+### flock
+
+google it.
+
+### last
+
+google it.
+
+### printenv
+
+Print list of env variables.
 
 
+Created by @Vasu Patel, 
 
-
-
+Let me know in case of any doubt or want to add more stuff into this. Enjoy!
