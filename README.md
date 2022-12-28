@@ -100,6 +100,137 @@ For example:
 → grep abcdefghijklmnopqrstuvwxyz file1 file2 \
  file3 file4
 ```
+### Creating and Running Shell Scripts
+
+#!/bin/bash
+
+
+!["The diffference betweeen a shell window and the shell"](Images\shell.PNG?raw=true "The diffference betweeen a shell window and the shell")
+
+[SBIN - System binaries](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch03s16.html#:~:text=1.,to%20the%20binaries%20in%20%2Fbin%20)
+
+/etc - et cetera - Configuration files for the system(and other miscellaneous stuff)
+
+/etc/init.d - Configuration files for booting Linux
+
+/etc/rc.d - Configuration files for booting Linux; rc1.d, rc2.d,...
+
+/proc (process information pseudo-file system) - 
+It doesn't contain 'real' files but runtime system information (e.g. system memory, devices mounted, hardware configuration, etc).
+[More](
+https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html)
+
+[Linux Proc by JavaTPoint](https://www.javatpoint.com/linux-proc)
+
+Read(R) Write(W) Execute(X)  \
+  4              2           1 \
+2^2         2^1       2^0
+
+-> any command > outfile   (create/override file) \
+-> any command >> outfile (Append to outfile)
+
+Print first column of the output.
+-> who | sort | awk '{print $1}' | less
+
+-> ls *.jpg | cut -d. -f1 
+
+For Instance: we have a file named *Image.jpg*
+
+Let say we want to extract *Image* name from the *Image.jpg*
+
+so we are going to write this way: 
+
+ls Image.jpg | cut -d. -f1 | cat
+
+-d = delimeter \
+-f1 means first text before period(.), --- Image \
+-f2 mean second text post period(.) --- jpg
+
+To invoke several commands in sequence on a snigle command line, seperate them with semicolons:
+
+-> *command1* ; *command2* ; *command3*
+
+For example: -> who ; cat myfile ;
+
+To run a sequence of commands as before, but stop execution if any of them fails, seperate them with && ("and") symbols:
+
+-> *command1* && *command2* && *command3*
+
+To run a sequence of commands, stopping executionor as soon as one succeeds, seperate them with || ("or") symbols:
+
+-> *command1* || *command2* || *command3*
+
+For Instance: \
+-> who || cat myfile \
+*Output:* vasu     tty2         2022-12-27 12:18 (tty2)
+
+date +%Y
+
+\+ - Represents format of the date
+% - Define specific date, time, year
+
+### Recall command - History
+
+history - Print your history
+
+history 5 - 5th command from your history
+
+### &
+
+Place at the end of a command line, the ampersand causes the given command to run as a background job:
+
+-> emacs myfile &
+
+ls -F \
+list files with decorates like for dir /, "*" executables
+, "@" symbolic link etc...
+
+Cat is particularly useful for sending a set of files into a shell pipeline:
+
+-> cat myfile* | wc
+
+For instance, less will display the contents of a compressed ZIP file:
+
+
+-> less myfile.zip
+
+
+#### nl
+
+nl copies its files to standard output, prepending line numbers:
+
+
+-> nl poem
+
+-> nl myfile
+
+
+It's more flexible than cat with its -n and -b options, providing greater control over the numbering.
+
+### HEAD
+
+-> head myfile
+-> head myfile* | less
+
+Previewing the first few lines of output from a pipeline:
+
+-> ls -lta | head
+
+### Strings
+
+Used for reading binary files.
+
+
+-> strings /usr/bin/who
+
+
+### STAT
+
+The stat command lists important attributes of files (by default) or filesystems (-f option). file information looks like.
+
+-> stat -f myfile
+
+
 
 -------------------------
 
