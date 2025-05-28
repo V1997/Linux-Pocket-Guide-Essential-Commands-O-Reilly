@@ -1,0 +1,36 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Node modules (if adding interactive features later)
+node_modules/
+npm-debug.log*
+
+# Python cache (if adding scripts)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test files
+test-output/
+test_*.txt
